@@ -1,0 +1,8 @@
+# Outbound RDP connection
+SELECT 
+      timegenerated as Date,
+      /* Strings */
+      EXTRACT_TOKEN(Strings, 1, '|') AS TargetIP
+FROM C:\Mo_Temp\Evidences\InfectedServer1\winevt\Logs\Microsoft-Windows-TerminalServices-RDPClient%4Operational.evtx
+WHERE EventID=1102ORDER BY timegenerated
+ORDER BY timegenerated
