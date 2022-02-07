@@ -1,6 +1,6 @@
 # Unsuccessful logon
 SELECT 
-      timegenerated AS Date, 
+      timegenerated, 
       EXTRACT_TOKEN(Strings, 5, '|') as Username, 
       EXTRACT_TOKEN(Strings, 6, '|') as Domain, 
       EXTRACT_TOKEN(Strings, 10, '|') as LogonType,
