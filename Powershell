@@ -1,0 +1,7 @@
+# 4104 - ScriptBlock
+SELECT 
+      timegenerated,
+      Strings AS ScriptBlock
+FROM Microsoft-Windows-PowerShell%4Operational.evtx
+WHERE EventID=4104
+ORDER BY timegenerated
