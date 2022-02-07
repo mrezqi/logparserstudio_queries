@@ -1,0 +1,26 @@
+# 4624 - Successful logon
+SELECT 
+      timegenerated, 
+      EXTRACT_TOKEN(Strings, 5, '|') AS Username, 
+      EXTRACT_TOKEN(Strings, 6, '|') AS Domain, 
+      EXTRACT_TOKEN(Strings, 8, '|') AS LogonType,
+      EXTRACT_TOKEN(strings, 9, '|') AS AuthPackage, 
+      EXTRACT_TOKEN(Strings, 11, '|') AS Workstation, 
+      EXTRACT_TOKEN(Strings, 17, '|') AS ProcessName, 
+      EXTRACT_TOKEN(Strings, 18, '|') AS SourceIP 
+FROM Security.evtx
+WHERE EventID=4624 AND Username NOT IN ('SYSTEM'; 'ANONYMOUS LOGON'; 'LOCAL SERVICE'; 'NETWORK SERVICE') AND Domain NOT IN ('NT AUTHORITY')
+ORDER BY timegenerated
+
+# 4625 - Unsuccessful logon
+SELECT 
+      timegenerated, 
+      EXTRACT_TOKEN(Strings, 5, '|') as Username, 
+      EXTRACT_TOKEN(Strings, 6, '|') as Domain, 
+      EXTRACT_TOKEN(Strings, 10, '|') as LogonType,
+      EXTRACT_TOKEN(strings, 11, '|') AS AuthPackage, 
+      EXTRACT_TOKEN(Strings, 13, '|') AS Workstation, 
+      EXTRACT_TOKEN(Strings, 19, '|') AS SourceIP 
+FROM Security.evtx
+WHERE EventID=4625 AND Username NOT IN ('SYSTEM'; 'ANONYMOUS LOGON'; 'LOCAL SERVICE'; 'NETWORK SERVICE') AND Domain NOT IN ('NT AUTHORITY')
+ORDER BY timegenerated
