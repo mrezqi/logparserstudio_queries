@@ -1,0 +1,8 @@
+# Outbound RDP connected to domain
+SELECT 
+      timegenerated,
+      /* Strings */
+      EXTRACT_TOKEN(Strings, 0, '|') AS Domain
+FROM Microsoft-Windows-TerminalServices-RDPClient%4Operational.evtx
+WHERE EventID=1027
+ORDER BY timegenerated
