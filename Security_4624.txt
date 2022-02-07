@@ -1,0 +1,13 @@
+# Successful logon
+SELECT 
+      timegenerated AS Date, 
+      EXTRACT_TOKEN(Strings, 5, '|') AS Username, 
+      EXTRACT_TOKEN(Strings, 6, '|') AS Domain, 
+      EXTRACT_TOKEN(Strings, 8, '|') AS LogonType,
+      EXTRACT_TOKEN(strings, 9, '|') AS AuthPackage, 
+      EXTRACT_TOKEN(Strings, 11, '|') AS Workstation, 
+      EXTRACT_TOKEN(Strings, 17, '|') AS ProcessName, 
+      EXTRACT_TOKEN(Strings, 18, '|') AS SourceIP 
+FROM C:\Mo_Temp\Evidences\InfectedServer1\winevt\Logs\Security.evtx
+WHERE EventID=4624 AND Username NOT IN ('SYSTEM'; 'ANONYMOUS LOGON'; 'LOCAL SERVICE'; 'NETWORK SERVICE') AND Domain NOT IN ('NT AUTHORITY')
+ORDER BY timegenerated
