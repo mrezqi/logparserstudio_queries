@@ -8,6 +8,6 @@ SELECT
       EXTRACT_TOKEN(Strings, 11, '|') AS Workstation, 
       EXTRACT_TOKEN(Strings, 17, '|') AS ProcessName, 
       EXTRACT_TOKEN(Strings, 18, '|') AS SourceIP 
-FROM 'Security.evtx'
+FROM Security.evtx
 WHERE EventID=4624 AND Username NOT IN ('SYSTEM'; 'ANONYMOUS LOGON'; 'LOCAL SERVICE'; 'NETWORK SERVICE') AND Domain NOT IN ('NT AUTHORITY')
 ORDER BY timegenerated
