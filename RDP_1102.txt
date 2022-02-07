@@ -1,8 +1,0 @@
-# Outbound RDP connection
-SELECT 
-      timegenerated as Date,
-      /* Strings */
-      EXTRACT_TOKEN(Strings, 1, '|') AS TargetIP
-FROM Microsoft-Windows-TerminalServices-RDPClient%4Operational.evtx
-WHERE EventID=1102
-ORDER BY timegenerated

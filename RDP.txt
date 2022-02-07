@@ -1,0 +1,26 @@
+# 1102 - Connection initiated
+SELECT 
+      timegenerated,
+      /* Strings */
+      EXTRACT_TOKEN(Strings, 1, '|') AS TargetIP
+FROM Microsoft-Windows-TerminalServices-RDPClient%4Operational.evtx
+WHERE EventID=1102
+ORDER BY timegenerated
+
+# 1024 - Trying to connect
+SELECT 
+      timegenerated,
+      /* Strings */
+      EXTRACT_TOKEN(Strings, 1, '|') AS Domain
+FROM Microsoft-Windows-TerminalServices-RDPClient%4Operational.evtx
+WHERE EventID=1024
+ORDER BY timegenerated
+
+# 1027 - Connected to domain
+SELECT 
+      timegenerated,
+      /* Strings */
+      EXTRACT_TOKEN(Strings, 0, '|') AS Domain
+FROM Microsoft-Windows-TerminalServices-RDPClient%4Operational.evtx
+WHERE EventID=1027
+ORDER BY timegenerated
